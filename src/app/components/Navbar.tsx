@@ -8,8 +8,8 @@ const Navbar = () => {
   });
   return (
     <nav>
-      <div className="bg-[#F3FBF4] border-b border-gray-200">
-        <div className="flex gap-2 p-4 w-11/12 mx-auto">
+      <div className="border-b border-gray-300">
+        <div className="w-11/12 mx-auto flex gap-2 p-4">
           <Image
             className="bg-green-800 p-3 rounded-xl"
             src={"/logo-icon.png"}
@@ -23,8 +23,8 @@ const Navbar = () => {
             <p className="text-[#1D271F]">{date}</p>
           </div>
         </div>
-        <Header />
       </div>
+        <Header />
     </nav>
   );
 };

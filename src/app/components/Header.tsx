@@ -18,14 +18,21 @@ const Header = async () => {
       <header className="w-[520px] lg:w-11/12 xl:max-w-7xl mx-auto">
         <div className="flex gap-10 border-b border-gray-200">
           {navItems.map((item) => (
-            <Link className="my-2 lg:my-2" key={item?.id} href={`/category/${item?.slug}`}>
-              {item?.icon}
-              {item?.nameBn}
+            <Link
+              className={`my-2 lg:my-2 ${item?.slug === ""
+      ? "bg-green-500"
+      : "bg-white"}`}
+              key={item?.id}
+              href={`/category/${item?.slug}`}
+            >
+              <div className="flex">
+                <p>{item?.icon}</p>
+                <p>{item?.nameBn}</p>
+              </div>
             </Link>
           ))}
         </div>
       </header>
-
     </div>
   );
 };

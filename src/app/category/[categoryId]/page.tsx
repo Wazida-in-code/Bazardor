@@ -42,7 +42,6 @@ const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
           </div>
         </div>
 
-        {/* Product Count */}
         <p className="mt-4 text-xs text-gray-500">
           মোট {allProducts.length}টি পণ্য দেখানো হচ্ছে
         </p>
@@ -88,7 +87,7 @@ const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
                 <p>
                   {product?.change.dir === "up" ? <p className="text-sm font-bold text-red-500">▲ {product?.change.pct}%</p> : "" }
                   {product?.change.dir === "down" ? <p className="text-sm font-bold text-green-500"> ▼ {product?.change.pct}%</p> : ""}
-                  {product?.change.dir === "flat" ? <p className="text-sm font-bold"> - {product?.change.pct}%</p> : ""}
+                  {product?.change.dir === "flat" ? <p className="text-sm font-bold text-gray-800"> - {product?.change.pct}%</p> : ""}
                 </p>
               </div>
               </div>
