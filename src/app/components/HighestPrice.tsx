@@ -13,7 +13,7 @@ interface HighestPriceType{
 
 const getPrice = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://api.abcz.workers.dev/api/bazardor/products",
   );
   const allPrice = await res.json();
   return allPrice;
@@ -35,22 +35,22 @@ const HighestPrice = async () => {
       <div className="grid gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-3">
         {onlySix.map((allUpPrice) => (
           <div
-            key={allUpPrice.id}
+            key={allUpPrice?.id}
             className="rounded-[20px] border border-[#dce7df] bg-white p-5"
           >
             {/* Top part */}
             <div className="flex items-center gap-3">
               <div className="flex h-14 w-14 items-center justify-center rounded-[14px] bg-[#f1f7f2] text-3xl">
-                {allUpPrice.image}
+                {allUpPrice?.image}
               </div>
 
               <div>
                 <p className="text-lg font-bold text-[#26332c]">
-                  {allUpPrice.nameBn}
+                  {allUpPrice?.nameBn}
                 </p>
 
                 <p className="text-sm text-[#66736b]">
-                  প্রতি {allUpPrice.unit === "kg" ? "কেজি" : allUpPrice.unit}
+                  প্রতি {allUpPrice?.unit === "kg" ? "কেজি" : allUpPrice?.unit}
                 </p>
               </div>
             </div>
@@ -61,14 +61,14 @@ const HighestPrice = async () => {
                 <p className="text-sm text-[#4d5a52]">আজকের দাম</p>
 
                 <p className="mt-1 text-2xl font-bold text-[#26332c]">
-                  {allUpPrice.today} টাকা
+                  {allUpPrice?.today} টাকা
                 </p>
               </div>
 
               {/* Price change */}
               <div className="rounded-full bg-[#f1f7f2] px-3 py-2">
                 <p className="text-sm font-bold text-red-500">
-                  ▲ {allUpPrice.change.pct}%
+                  ▲ {allUpPrice?.change.pct}%
                 </p>
               </div>
             </div>

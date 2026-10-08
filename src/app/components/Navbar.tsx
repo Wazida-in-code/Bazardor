@@ -23,9 +23,6 @@ const Navbar = () => {
             <p className="text-[#1D271F]">{date}</p>
           </div>
         </div>
-      </div>
-
-      <div>
         <Header />
       </div>
     </nav>

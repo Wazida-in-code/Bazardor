@@ -14,7 +14,7 @@ interface ProductType{
 }
 
 const Marquee = async () => {
-  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products",);
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products",);
   const products: ProductType[] = await res.json();
   
   return (
@@ -23,14 +23,14 @@ const Marquee = async () => {
         <MarqueeText direction="right" duration={11}>
           {products.map((product) => (
             <div className="flex gap-1.5 mr-9 mt-3" key={product.id}>
-                <p>{product.categoryIcon}</p>
-                <p>{product.nameBn}</p>
+                <p>{product?.categoryIcon}</p>
+                <p>{product?.nameBn}</p>
                 <p>
-                  {product.today}/{product.unit}
+                  {product?.today}/{product.unit}
                 </p>
                  
                 {
-                    product.change.dir === "up"? <p className="text-red-700">▲{product.change.pct}%</p> : <p className="text-green-700">▼{product.change.pct}%</p>
+                    product.change.dir === "up"? <p className="text-red-700">▲{product?.change.pct}%</p> : <p className="text-green-700">▼{product?.change.pct}%</p>
                 }
             </div>
           ))}
