@@ -1,14 +1,14 @@
-interface HighestPriceType{
-  id: number,
-  categoryIcon: string,
-  image: string
-  nameBn: string,
-  unit: string,
-  today: number,
+interface LowestPriceType {
+  id: number;
+  categoryIcon: string;
+  image: string;
+  nameBn: string;
+  unit: string;
+  today: number;
   change: {
-      dir: string,
-      pct: number
-}
+    dir: string;
+    pct: number;
+  };
 }
 
 const getPrice = async () => {
@@ -19,19 +19,20 @@ const getPrice = async () => {
   return allPrice;
 };
 
-const HighestPrice = async () => {
-  const allPrices: HighestPriceType[] = await getPrice();
+const LowestPrice = async () => {
+  const allPrices: LowestPriceType[] = await getPrice();
   const prices = allPrices.map((prices) => prices);
-  const upPrice = prices.filter((price) => price.change.dir === "up");
-  const mostUpPrice = upPrice.sort((a, b) => b.change.pct - a.change.pct);
+  const upPrice = prices.filter((price) => price.change.dir === "down");
+  const mostUpPrice = upPrice.sort((a, b) => a.change.pct - b.change.pct);
   const onlySix = mostUpPrice.slice(0, 6);
+  console.log(onlySix);
 
   return (
     <div className="w-11/12 mx-auto">
-        <div className="flex">
-        <p className="text-red-600 font-bold text-2xl mt-6">▲</p>
-        <p className="font-bold text-2xl mt-6">আজ দাম বেড়েছে</p>
-        </div>
+      <div className="flex">
+        <p className="text-green-600 font-bold text-2xl mt-6">▼</p>
+        <p className="font-bold text-2xl mt-6">আজ দাম কমেছে</p>
+      </div>
       <div className="grid gap-4 mt-6 sm:grid-cols-2 lg:grid-cols-3">
         {onlySix.map((allUpPrice) => (
           <div
@@ -67,8 +68,8 @@ const HighestPrice = async () => {
 
               {/* Price change */}
               <div className="rounded-full bg-[#f1f7f2] px-3 py-2">
-                <p className="text-sm font-bold text-red-500">
-                  ▲ {allUpPrice.change.pct}%
+                <p className="text-sm font-bold text-green-500">
+                  ▼ {allUpPrice.change.pct}%
                 </p>
               </div>
             </div>
@@ -79,4 +80,4 @@ const HighestPrice = async () => {
   );
 };
 
-export default HighestPrice;
+export default LowestPrice;
