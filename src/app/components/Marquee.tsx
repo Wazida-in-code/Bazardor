@@ -17,7 +17,7 @@ interface ProductType{
 const Marquee = async () => {
   const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products",);
   const products: ProductType[] = await res.json();
-  console.log(products);
+  
   return (
     <div className="bg-[#F0F5F0]">
       <div>

@@ -1,5 +1,6 @@
-
+// 'use client'
 import Image from "next/image";
+import HighestPrice from "./components/HighestPrice";
 
 export default function Home() {
   const date = new Date().toLocaleDateString("bn-BD", {
@@ -44,6 +45,7 @@ export default function Home() {
 
         </div>
       </div>
+      <HighestPrice />
     </div>
   );
 }
