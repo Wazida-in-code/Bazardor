@@ -29,9 +29,11 @@ export default function Home() {
               বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
             </p>
 
-            <button className="rounded-md bg-[#079447] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#067d3b]">
+            <a href="#allCards">
+              <button className="cursor-pointer rounded-md bg-[#079447] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#067d3b]">
               সব পণ্য দেখুন
             </button>
+            </a>
           </div>
 
           {/* Right Image */}

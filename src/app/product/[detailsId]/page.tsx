@@ -40,21 +40,21 @@ const ProductDetailsPage = async ({
 
               <p className="mt-1 text-[10px] text-gray-600 sm:text-xs">
                 {data.change.dir === "up" ? (
-                  <p>
+                  <span>
                     {`গতকালের তুলনায় আজ দাম বেড়েছে · ${
                       data.today - data.yesterday
                     } টাকা`}
-                  </p>
+                  </span>
                 ) : (
                   ""
                 )}
 
                 {data.change.dir === "down" ? (
-                  <p>
+                  <div>
                     {`গতকালের তুলনায় আজ দাম কমেছে · ${
                       data.yesterday - data.today
                     } টাকা`}
-                  </p>
+                  </div>
                 ) : (
                   ""
                 )}
@@ -76,9 +76,9 @@ const ProductDetailsPage = async ({
 
             <p className="mt-1">
               {data?.change.dir === "up" ? (
-                <p className="text-xs font-bold text-red-500 sm:text-sm">
+                <span className="text-xs font-bold text-red-500 sm:text-sm">
                   ▲ {data?.change.pct}%
-                </p>
+                </span>
               ) : (
                 ""
               )}

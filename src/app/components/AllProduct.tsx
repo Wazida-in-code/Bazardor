@@ -22,8 +22,8 @@ const getPrice = async () => {
 const AllProduct = async () => {
   const products = await getPrice();
   return (
-    <div className="w-11/12 mx-auto">
-      <div className="">
+    <div id="allCards" className="w-11/12 mx-auto">
+      <div>
         <p className="font-bold text-2xl mt-6">সব পণ্য</p>
         <p className="font-semibold text-[#1D271F] mt-3">
           মোট ৩৩টি পণ্য দেখানো হচ্ছে
@@ -65,7 +65,7 @@ const AllProduct = async () => {
 
                 {/* Price change */}
                 <div className="rounded-full bg-[#f1f7f2] px-3 py-2">
-                  <p>
+                  <div>
                     {product?.change.dir === "up" ? (
                       <p className="text-sm font-bold text-red-500">
                         ▲ {product?.change.pct}%
@@ -87,7 +87,7 @@ const AllProduct = async () => {
                     ) : (
                       ""
                     )}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>

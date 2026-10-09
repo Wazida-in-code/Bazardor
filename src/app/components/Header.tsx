@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
-interface navItemType {
+
+export interface navItemType {
   id: string;
   slug: string;
   nameBn: string;
@@ -8,13 +10,15 @@ interface navItemType {
 }
 
 const Header = async () => {
-  const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
-  );
-  const navItems: navItemType[] = await res.json();
+ const res = await fetch(
+     "https://api.abcz.workers.dev/api/bazardor/categories",
+   {cache: "no-store"});
+   const navItems: navItemType[] = await res.json();
+   console.log(navItems);
 
   return (
-    <div>
+    <Suspense fallback="loading">
+      <div>
       <header className="w-[520px] lg:w-11/12 xl:max-w-7xl mx-auto">
         <div className="flex gap-10 border-b border-gray-200">
           {navItems.map((item) => (
@@ -34,6 +38,7 @@ const Header = async () => {
         </div>
       </header>
     </div>
+    </Suspense>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -14,11 +15,12 @@ interface ProductType{
 }
 
 const Marquee = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products",);
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products", {cache: "no-store"});
   const products: ProductType[] = await res.json();
   
   return (
-    <div className="bg-[#F0F5F0]">
+    <Suspense fallback={"loading"}>
+      <div className="bg-[#F0F5F0]">
       <div>
         <MarqueeText direction="right" duration={11}>
           {products.map((product) => (
@@ -37,6 +39,7 @@ const Marquee = async () => {
         </MarqueeText>
       </div>
     </div>
+    </Suspense>
   );
 };
 
