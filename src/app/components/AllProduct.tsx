@@ -14,7 +14,7 @@ interface ProductType {
 }
 
 const getPrice = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
   const allPrice: ProductType[] = await res.json();
   return allPrice;
 };
@@ -34,7 +34,7 @@ const AllProduct = async () => {
           <Link key={product?.id} href={`/product/${product.id}`}>
             <div
               key={product?.id}
-              className="rounded-[20px] border border-[#dce7df] bg-white p-5"
+              className="rounded-[20px] hover:rounded-[20px] border hover:border-green-600 hover:border border-[#dce7df] bg-white p-5"
             >
               {/* Top part */}
               <div className="flex items-center gap-3">

@@ -85,9 +85,9 @@ const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
                 {/* Price Change */}
                 <div className="rounded-full bg-[#f1f7f2] px-3 py-2">
                 <p>
-                  {product?.change.dir === "up" ? <p className="text-sm font-bold text-red-500">▲ {product?.change.pct}%</p> : "" }
-                  {product?.change.dir === "down" ? <p className="text-sm font-bold text-green-500"> ▼ {product?.change.pct}%</p> : ""}
-                  {product?.change.dir === "flat" ? <p className="text-sm font-bold text-gray-800"> - {product?.change.pct}%</p> : ""}
+                  {product?.change.dir === "up" ? <span className="text-sm font-bold text-red-500">▲ {product?.change.pct}%</span> : "" }
+                  {product?.change.dir === "down" ? <span className="text-sm font-bold text-green-500"> ▼ {product?.change.pct}%</span> : ""}
+                  {product?.change.dir === "flat" ? <span className="text-sm font-bold text-gray-800"> - {product?.change.pct}%</span> : ""}
                 </p>
               </div>
               </div>

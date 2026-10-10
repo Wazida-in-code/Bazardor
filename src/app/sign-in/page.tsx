@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -27,9 +27,22 @@ const SignInPage = () => {
     }
 
     if (error) {
-        toast.error(error.message)
+        toast.error(error.message ?? "Something went wrong!")
     }
   };
+
+
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+    provider: "google",
+  });
+  }
+  const handleGithubSignIn = async () => {
+    const data = await authClient.signIn.social({
+    provider: "github",
+  });
+  }
+
 
   return (
     <div className="min-h-screen bg-[#F1F6F1] px-4 py-6 flex flex-col items-center">
@@ -78,7 +91,7 @@ const SignInPage = () => {
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row">
-            <button
+            <button onClick={handleGoogleSignIn}
               type="button"
               className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-[#DCE5DC] px-3 py-3 text-sm font-semibold text-[#26332B] hover:bg-[#F0F5F0]"
             >
@@ -86,7 +99,7 @@ const SignInPage = () => {
               Google দিয়ে চালিয়ে যান
             </button>
 
-            <button
+            <button onClick={handleGithubSignIn}
               type="button"
               className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-[#DCE5DC] px-3 py-3 text-sm font-semibold text-[#26332B] hover:bg-[#F0F5F0]"
             >

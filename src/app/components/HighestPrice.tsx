@@ -14,7 +14,7 @@ interface HighestPriceType {
 }
 
 const getPrice = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
   const allPrice = await res.json();
   return allPrice;
 };
@@ -36,7 +36,7 @@ const HighestPrice = async () => {
         {onlySix.map((allUpPrice) => (
           <Link key={allUpPrice?.id} href={`/product/${allUpPrice.id}`}>
             <div
-              className="rounded-[20px] border border-[#dce7df] bg-white p-5"
+              className="rounded-[20px] hover:rounded-[20px] border hover:border-green-600 hover:border border-[#dce7df] bg-white p-5"
             >
               {/* Top part */}
               <div className="flex items-center gap-3">

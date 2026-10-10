@@ -11,7 +11,7 @@ export interface navItemType {
 
 const Header = async () => {
  const res = await fetch(
-     "https://api.abcz.workers.dev/api/bazardor/categories",
+     "https://api.api-store.workers.dev/api/bazardor/categories",
    {cache: "no-store"});
    const navItems: navItemType[] = await res.json();
    console.log(navItems);

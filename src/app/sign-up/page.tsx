@@ -1,5 +1,5 @@
 "use client";
-import { signUp } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
@@ -23,9 +23,21 @@ const SignUpPage = () => {
         };
 
         if (error){
-            toast.error(error.message)
+            toast.error(error.message ?? "Something went wrong!")
         }
   };
+
+  const handleGoogleSignUp = async () => {
+      const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    }
+  const handleGithubSignUp = async () => {
+      const data = await authClient.signIn.social({
+      provider: "github",
+    });
+    }
+  
 
 
   return (
@@ -46,6 +58,15 @@ const SignUpPage = () => {
                 type="text"
                 name="name"
                 placeholder="যেমন: রহিম উদ্দিন"
+                className="w-full rounded-[10px] border border-[#DCE5DC] bg-transparent px-3.5 py-3 text-sm outline-none focus:border-green-600"
+              />
+              <label className="mb-2 block text-[16px] font-medium text-[#26332B]">
+                ছবি
+              </label>
+              <input
+                type="url"
+                name="image"
+                placeholder="আপনার ছবি দিন"
                 className="w-full rounded-[10px] border border-[#DCE5DC] bg-transparent px-3.5 py-3 text-sm outline-none focus:border-green-600"
               />
 
@@ -96,7 +117,7 @@ const SignUpPage = () => {
 
           <div className="flex flex-col gap-2 sm:flex-row">
             
-            <button
+            <button onClick={handleGoogleSignUp}
               type="button"
               className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-[#DCE5DC] px-3 py-3 text-sm font-semibold text-[#26332B] hover:bg-[#F0F5F0]"
             >
@@ -105,7 +126,7 @@ const SignUpPage = () => {
             </button>
 
             
-            <button
+            <button onClick={handleGithubSignUp}
               type="button"
               className="flex flex-1 items-center justify-center gap-1 rounded-[10px] border border-[#DCE5DC] px-3 py-3 text-sm font-semibold text-[#26332B] hover:bg-[#F0F5F0]"
             >
