@@ -1,12 +1,15 @@
 "use client";
 import { authClient, signOut, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
   const user = session?.user;
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await signOut()
+    await signOut();
+    router.push("/");
   };
 
   const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -17,27 +20,31 @@ const ProfilePage = () => {
     };
 
     await authClient.updateUser({
-        ...newUserData
+      ...newUserData,
     });
   };
 
   return (
-    <div className="bg-[#E1E8E1] ">
-      <div className="mt-[80px] mb-[80px] mx-auto max-w-[540px] space-y-4">
-        <h2 className="font-bold text-2xl">আমার প্রোফাইল</h2>
+    <div className="w-full bg-[#E1E8E1] px-3 sm:px-5">
+      <div className="mx-auto mt-10 mb-10 w-full max-w-[540px] space-y-4 sm:mt-16 sm:mb-16">
+        <h2 className="text-2xl font-bold">আমার প্রোফাইল</h2>
+
         <p>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
+
         {/* Profile Card */}
-        <div className="flex items-center justify-between gap-3 rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-4">
+        <div className="flex flex-col gap-4 rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:p-4">
           <div className="flex min-w-0 items-center gap-3">
             <img
               alt={user?.name}
-              src={user?.image}
-              className="h-[52px] w-[60px] rounded-xl object-cover"
+              src={user?.image as string}
+              className="h-[52px] w-[60px] shrink-0 rounded-xl object-cover"
             />
+
             <div className="min-w-0">
               <h2 className="truncate text-sm font-bold text-[#26332B]">
                 {user?.name}
               </h2>
+
               <p className="mt-1 truncate text-xs text-gray-500">
                 {user?.email}
               </p>
@@ -46,14 +53,14 @@ const ProfilePage = () => {
 
           <button
             onClick={handleSignOut}
-            className="shrink-0 rounded-lg border border-red-400 px-3 py-2 text-xs text-red-500 hover:bg-red-50"
+            className="shrink-0 self-start rounded-lg border border-red-400 px-3 py-2 text-xs text-red-500 hover:bg-red-50 sm:self-auto"
           >
             ↩ সাইন আউট
           </button>
         </div>
 
         {/* Information Card */}
-        <div className="rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-4 sm:p-5">
+        <div className="rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-3 sm:p-5">
           <h3 className="mb-6 text-sm font-bold text-[#26332B]">তথ্য</h3>
 
           <form onSubmit={handleUpdateProfile} className="px-1 sm:px-3">

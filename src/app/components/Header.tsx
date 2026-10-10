@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { Suspense } from "react";
-
+import HeaderLinks from "./HeaderLinks";
 
 export interface navItemType {
   id: string;
@@ -10,34 +9,20 @@ export interface navItemType {
 }
 
 const Header = async () => {
- const res = await fetch(
-     "https://api.api-store.workers.dev/api/bazardor/categories",
-   {cache: "no-store"});
-   const navItems: navItemType[] = await res.json();
-   console.log(navItems);
+  const res = await fetch(
+    "https://api.abcz.workers.dev/api/bazardor/categories",
+    { cache: "no-store" },
+  );
+
+  const navItems: navItemType[] = await res.json();
 
   return (
     <Suspense fallback="loading">
-      <div>
-      <header className="w-[520px] lg:w-11/12 xl:max-w-7xl mx-auto">
-        <div className="flex gap-10 border-b border-gray-200">
-          {navItems.map((item) => (
-            <Link
-              className={`my-2 lg:my-2 ${item?.slug === ""
-      ? "bg-green-500"
-      : "bg-white"}`}
-              key={item?.id}
-              href={`/category/${item?.slug}`}
-            >
-              <div className="flex">
-                <p>{item?.icon}</p>
-                <p>{item?.nameBn}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </header>
-    </div>
+      <div className="w-full border-b border-gray-300">
+        <header className="mx-auto w-full max-w-7xl px-2 sm:px-4 lg:px-6">
+          <HeaderLinks navItems={navItems} />
+        </header>
+      </div>
     </Suspense>
   );
 };

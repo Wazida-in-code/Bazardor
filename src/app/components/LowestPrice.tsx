@@ -15,7 +15,7 @@ interface LowestPriceType {
 
 const getPrice = async () => {
   const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://api.abcz.workers.dev/api/bazardor/products",
   );
   const allPrice = await res.json();
   return allPrice;

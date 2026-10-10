@@ -18,11 +18,11 @@ const UserInfo = () => {
             <Link href={"/profile"}>
               <div className="avatar avatar-placeholder">
               <div className="bg-neutral text-neutral-content w-8 rounded-full">
-                <img alt={user?.name} src={user?.image} />
+                <img alt={user?.name} src={user?.image as string} />
               </div>
             </div>
             </Link>
-            <h2 className="pt-1">{user?.name}</h2>
+            <h2 className="pt-1 text-sm lg:text-xl">{user?.name}</h2>
           </div>
           <button onClick={handleSignOut} className="text-red-700 px-1 py-2 rounded-md hover:bg-gray-200">সাইন আউট ↪</button>
         </div>

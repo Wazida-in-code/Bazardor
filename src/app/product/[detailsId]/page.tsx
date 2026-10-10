@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface MarketType {
   market: string;
   division: string;
@@ -12,7 +14,7 @@ const ProductDetailsPage = async ({
 }) => {
   const { detailsId } = await params;
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${detailsId}`,
+    `https://api.abcz.workers.dev/api/bazardor/products/${detailsId}`,
   );
   const data = await res.json();
   const markets: MarketType[] = data.markets;
@@ -21,6 +23,13 @@ const ProductDetailsPage = async ({
   console.log(highestPrice);
   return (
     <div className="min-h-screen bg-[#F3FBF4] px-3 py-5 sm:px-5">
+      <div className="flex mx-auto w-full max-w-5xl gap-2 my-5 text-[#1D271F]">
+        <Link href={"/"}>হোম</Link>
+        <span>⮞</span>
+        <p>{data.categoryNameBn}</p>
+        <span>⮞</span>
+        <p>{data.nameBn}</p>
+      </div>
       <div className="mx-auto w-full max-w-5xl rounded-xl border border-[#DDE8DF] bg-white p-4 shadow-sm sm:p-6">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           {/* Image + Information */}
