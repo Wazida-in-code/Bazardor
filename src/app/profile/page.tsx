@@ -1,9 +1,10 @@
 "use client";
 import { authClient, signOut, useSession } from "@/lib/auth-client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
-  const { data: session } = useSession();
+  const { data: session, refetch } = useSession();
   const user = session?.user;
   const router = useRouter();
 
@@ -22,6 +23,7 @@ const ProfilePage = () => {
     await authClient.updateUser({
       ...newUserData,
     });
+    await refetch()
   };
 
   return (
@@ -32,12 +34,12 @@ const ProfilePage = () => {
         <p>আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।</p>
 
         {/* Profile Card */}
-        <div className="flex flex-col gap-4 rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:p-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <img
-              alt={user?.name}
-              src={user?.image as string}
-              className="h-[52px] w-[60px] shrink-0 rounded-xl object-cover"
+        <div className="grid grid-cols-3 gap-4 rounded-xl border border-[#E0E8E0] bg-[#FAFCFA] p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:p-4">
+          <div className="flex col-span-2 min-w-0 items-center gap-3">
+            <Image height={52} width={60}
+              alt={user?.name || "image"}
+              src={user?.image || "/defult.png"}
+              className=" shrink-0 rounded-xl object-cover"
             />
 
             <div className="min-w-0">
@@ -53,7 +55,7 @@ const ProfilePage = () => {
 
           <button
             onClick={handleSignOut}
-            className="shrink-0 self-start rounded-lg border border-red-400 px-3 py-2 text-xs text-red-500 hover:bg-red-50 sm:self-auto"
+            className="shrink-0 col-span-1 self-start rounded-lg border border-red-400 px-3 py-2 text-xs text-red-500 hover:bg-red-50 sm:self-auto"
           >
             ↩ সাইন আউট
           </button>
