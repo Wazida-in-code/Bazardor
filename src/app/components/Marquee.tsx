@@ -20,7 +20,7 @@ const Marquee = async () => {
   
   return (
     <Suspense fallback={"loading"}>
-      <div className="bg-[#F0F5F0]">
+      <div>
       <div>
         <MarqueeText direction="right" duration={11}>
           {products.map((product) => (
