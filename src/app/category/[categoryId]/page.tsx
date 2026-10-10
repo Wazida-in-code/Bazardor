@@ -14,12 +14,12 @@ interface AllProductInterface{
 const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
   const { categoryId } = await params;
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
   );
   const allProducts: AllProductInterface[] = await res.json();
   // const allProducts = allProductType.map(products => products)
 
-  const respons = await fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${categoryId}`)
+  const respons = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories/${categoryId}`)
   const data = await respons.json()
   return (
     <div className="min-h-screen bg-[#f1f7f2] px-4 py-6 lg:px-6">
