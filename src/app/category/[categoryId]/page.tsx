@@ -1,3 +1,5 @@
+import SortingProducts from "@/app/components/SortingProducts";
+
 interface AllProductInterface{
     id: number,
     image: string,
@@ -14,8 +16,8 @@ const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
   const res = await fetch(
     `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
   );
-  const allProductType: AllProductInterface[] = await res.json();
-  const allProducts = allProductType.map(products => products)
+  const allProducts: AllProductInterface[] = await res.json();
+  // const allProducts = allProductType.map(products => products)
 
   const respons = await fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${categoryId}`)
   const data = await respons.json()
@@ -46,54 +48,7 @@ const categoryPage = async ({ params }:{params : {categoryId:string}}) => {
           মোট {allProducts.length}টি পণ্য দেখানো হচ্ছে
         </p>
 
-        {/* Product Cards */}
-        <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {allProducts.map((product) => (
-            <div
-              key={product.id}
-              className="rounded-[14px] border border-[#dce7df] bg-white p-3"
-            >
-              {/* Product Name */}
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f1f3ef] text-xl">
-                  {product.image}
-                </div>
-
-                <div>
-                  <h2 className="text-sm font-semibold text-[#1d2922]">
-                    {product.nameBn}
-                  </h2>
-
-                  <p className="text-xs text-gray-500">
-                    প্রতি কেজি
-                  </p>
-                </div>
-              </div>
-
-              {/* Price */}
-              <div className="mt-4 flex items-end justify-between">
-                <div>
-                  <p className="text-[11px] text-gray-500">
-                    আজকের দাম
-                  </p>
-
-                  <p className="text-lg font-bold text-[#17221b]">
-                    {product.today} টাকা
-                  </p>
-                </div>
-
-                {/* Price Change */}
-                <div className="rounded-full bg-[#f1f7f2] px-3 py-2">
-                <p>
-                  {product?.change.dir === "up" ? <span className="text-sm font-bold text-red-500">▲ {product?.change.pct}%</span> : "" }
-                  {product?.change.dir === "down" ? <span className="text-sm font-bold text-green-500"> ▼ {product?.change.pct}%</span> : ""}
-                  {product?.change.dir === "flat" ? <span className="text-sm font-bold text-gray-800"> - {product?.change.pct}%</span> : ""}
-                </p>
-              </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <SortingProducts allProducts={allProducts} />
       </div>
     </div>
   );
