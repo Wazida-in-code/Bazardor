@@ -5,7 +5,6 @@ import Link from "next/link";
 const UserInfo = () => {
   const { data: session } = useSession();
   const user = session?.user;
-  console.log(user);
 
   const handleSignOut = async() => {
     await signOut();
@@ -15,12 +14,14 @@ const UserInfo = () => {
     <div className="flex gap-5 items-center">
       {user ? (
         <div className="flex items-center">
-          <div>
-            <div className="avatar avatar-placeholder">
+          <div className="flex flex-col items-center">
+            <Link href={"/profile"}>
+              <div className="avatar avatar-placeholder">
               <div className="bg-neutral text-neutral-content w-8 rounded-full">
                 <img alt={user?.name} src={user?.image} />
               </div>
             </div>
+            </Link>
             <h2 className="pt-1">{user?.name}</h2>
           </div>
           <button onClick={handleSignOut} className="text-red-700 px-1 py-2 rounded-md hover:bg-gray-200">সাইন আউট ↪</button>
